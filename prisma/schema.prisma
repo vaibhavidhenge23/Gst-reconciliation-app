@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model PurchaseInvoice {
+  id            Int      @id @default(autoincrement())
+  invoiceNumber String
+  vendorName    String
+  vendorGST     String?
+  amount        Float
+  gstAmount     Float
+  gstRate       Float
+  invoiceDate   DateTime
+  status        String   @default("pending")
+  createdAt     DateTime @default(now())
+}
+
+model SalesInvoice {
+  id            Int      @id @default(autoincrement())
+  invoiceNumber String
+  customerName  String
+  customerGST   String?
+  amount        Float
+  gstAmount     Float
+  gstRate       Float
+  invoiceDate   DateTime
+  status        String   @default("pending")
+  createdAt     DateTime @default(now())
+}
+
+model GSTReconciliation {
+  id               Int      @id @default(autoincrement())
+  period           String   @unique
+  month            Int
+  year             Int
+  purchaseCount    Int
+  purchaseTotalAmt Float
+  purchaseTotalGST Float
+  salesCount       Int
+  salesTotalAmt    Float
+  salesTotalGST    Float
+  gstPayable       Float
+  itcAvailable     Float
+  mismatchDetected Boolean
+  createdAt        DateTime @default(now())
+}
+
+model ReconciliationLog {
+  id        Int      @id @default(autoincrement())
+  period    String
+  type      String
+  message   String
+  severity  String
+  createdAt DateTime @default(now())
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  pan       String   @unique
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
