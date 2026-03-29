@@ -72,12 +72,83 @@ flowchart TD
 │   └── dev.db           # SQLite database file
 ├── vercel.json          # Deployment configuration
 └── package.json         # Project metadata and scripts
-🚀 InstallationFollow these steps to run the application locally.1. Clone the repositoryBashgit clone [https://github.com/vaibhavidhenge23/gst-reconciliation-app.git](https://github.com/vaibhavidhenge23/gst-reconciliation-app.git)
+
+🚀 Installation
+Follow these steps to run the application locally.
+
+1. Clone the repository
+
+Bash
+git clone [https://github.com/vaibhavidhenge23/gst-reconciliation-app.git](https://github.com/vaibhavidhenge23/gst-reconciliation-app.git)
 cd gst-reconciliation-app
-2. Install dependenciesBashnpm install
-3. Setup the DatabaseGenerate the Prisma client and push the schema to the SQLite database.Bashnpx prisma generate
+2. Install dependencies
+
+Bash
+npm install
+3. Setup the Database
+Generate the Prisma client and push the schema to the SQLite database.
+
+Bash
+npx prisma generate
 npx prisma db push
-4. Start the Development ServerBashnpm run dev
-Visit http://localhost:3000 in your browser.💻 UsageLogin: Enter a valid Indian PAN format (e.g., ABCDE1234F) to access the dashboard.Add Invoices: Navigate to the Invoices tab to add your monthly Purchase and Sales records.Reconcile: Go to the Reconcile tab, select the Target Month and Year, and run the engine.Review Compliance: Check the Alerts tab for any missing data or mismatched tax rates detected during reconciliation.Generate Reports: Use the Reports tab to view your aggregated financial data for tax filing.⚙️ ConfigurationCurrently, the app uses a local SQLite database (dev.db). No .env configuration is strictly required to run it locally.If you plan to migrate to a production database (like PostgreSQL), update the prisma/schema.prisma file and add a .env file:Code snippet# .env
+4. Start the Development Server
+
+Bash
+npm run dev
+Visit http://localhost:3000 in your browser.
+
+💻 Usage
+Login: Enter a valid Indian PAN format (e.g., ABCDE1234F) to access the dashboard.
+
+Add Invoices: Navigate to the Invoices tab to add your monthly Purchase and Sales records.
+
+Reconcile: Go to the Reconcile tab, select the Target Month and Year, and run the engine.
+
+Review Compliance: Check the Alerts tab for any missing data or mismatched tax rates detected during reconciliation.
+
+Generate Reports: Use the Reports tab to view your aggregated financial data for tax filing.
+
+⚙️ Configuration
+Currently, the app uses a local SQLite database (dev.db). No .env configuration is strictly required to run it locally.
+
+If you plan to migrate to a production database (like PostgreSQL), update the prisma/schema.prisma file and add a .env file:
+
+Code snippet
+# .env
 DATABASE_URL="postgresql://user:password@localhost:5432/gst_db"
-🔌 API ModulesThe application exposes the following internal REST APIs:GET /api/dashboard: Aggregates current month's GST totals, sales/purchase counts, and recent transactions.GET/POST /api/invoices: Fetches or creates PurchaseInvoice and SalesInvoice records.POST /api/reconcile: The core engine. Accepts a month and year, calculates aggregate GST, logs errors, and marks invoices as reconciled.GET /api/reports: Fetches historical reconciliation data ordered by date.GET /api/alerts: Retrieves the top 50 most recent compliance logs.📸 Demo(Add screenshots of your application here)Login ScreenDashboard[Screenshot Placeholder][Screenshot Placeholder]ReconciliationCompliance Alerts[Screenshot Placeholder][Screenshot Placeholder]🤝 ContributingContributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.Fork the ProjectCreate your Feature Branch (git checkout -b feature/AmazingFeature)Commit your Changes (git commit -m 'Add some AmazingFeature')Push to the Branch (git push origin feature/AmazingFeature)Open a Pull Request🗺 Roadmap[ ] Implement OCR / PDF parsing for automated invoice uploads.[ ] Add Multi-tenant support for CAs to manage multiple client profiles.[ ] Integrate email notifications for upcoming filing deadlines (GSTR-1, GSTR-3B).[ ] Migrate from SQLite to PostgreSQL for scalable production deployments.📄 LicenseDistributed under the MIT License. See LICENSE for more information
+🔌 API Modules
+The application exposes the following internal REST APIs:
+
+GET /api/dashboard: Aggregates current month's GST totals, sales/purchase counts, and recent transactions.
+
+GET/POST /api/invoices: Fetches or creates PurchaseInvoice and SalesInvoice records.
+
+POST /api/reconcile: The core engine. Accepts a month and year, calculates aggregate GST, logs errors, and marks invoices as reconciled.
+
+GET /api/reports: Fetches historical reconciliation data ordered by date.
+
+GET /api/alerts: Retrieves the top 50 most recent compliance logs
+🤝 Contributing
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are greatly appreciated.
+
+Fork the Project
+
+Create your Feature Branch (git checkout -b feature/AmazingFeature)
+
+Commit your Changes (git commit -m 'Add some AmazingFeature')
+
+Push to the Branch (git push origin feature/AmazingFeature)
+
+Open a Pull Request
+
+🗺 Roadmap
+[ ] Implement OCR / PDF parsing for automated invoice uploads.
+
+[ ] Add Multi-tenant support for CAs to manage multiple client profiles.
+
+[ ] Integrate email notifications for upcoming filing deadlines (GSTR-1, GSTR-3B).
+
+[ ] Migrate from SQLite to PostgreSQL for scalable production deployments.
+
+📄 License
+Distributed under the MIT License. See LICENSE for more information.
