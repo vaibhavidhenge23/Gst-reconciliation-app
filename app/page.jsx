@@ -22,9 +22,9 @@ export default function Home() {
           </div>
         ))}
       </div>
-      <Link href="/dashboard"
+      <Link href="/login"
         className="bg-green-500 px-8 py-3 rounded-xl text-black font-bold text-lg hover:bg-green-400 transition">
-        Open Dashboard →
+        Login & Open Dashboard →
       </Link>
     </div>
   );

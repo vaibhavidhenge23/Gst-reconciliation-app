@@ -20,6 +20,12 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Basic Auth Check
+    if (!localStorage.getItem("isAuthenticated")) {
+      window.location.href = "/login";
+      return;
+    }
+
     async function load() {
       try {
         const res = await fetch("/api/dashboard");

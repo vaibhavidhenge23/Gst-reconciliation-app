@@ -35,6 +35,5 @@ yarn-error.log*
 next-env.d.ts
 
 # sqlite
-*.db
+# NOT completely ignoring db files as we need dev.db for Vercel deployment (serverless read-only mode pattern)
 *.db-journal
-dev.db
